@@ -1,0 +1,52 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# VICECLIP STUDIO — Python Dependencies
+# Install with:  pip install -r requirements.txt
+# PyTorch CUDA is installed separately by setup.ps1
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ── Web Framework ─────────────────────────────────────────────────────────────
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+sse-starlette>=2.1.0
+python-multipart>=0.0.9
+
+# ── Pydantic & Config ────────────────────────────────────────────────────────
+pydantic>=2.9.0
+pydantic-settings>=2.6.0
+python-dotenv>=1.0.1
+
+# ── Database ─────────────────────────────────────────────────────────────────
+aiosqlite>=0.20.0
+
+# ── Google Gemini AI SDK (official, NOT deprecated google-generativeai) ──────
+google-genai>=1.0.0
+
+# ── YouTube Downloader ───────────────────────────────────────────────────────
+yt-dlp>=2024.11.0
+
+# ── Transcription (CUDA-accelerated) ────────────────────────────────────────
+faster-whisper>=1.1.0
+
+# ── Audio Analysis ───────────────────────────────────────────────────────────
+librosa>=0.10.2
+soundfile>=0.12.1
+
+# ── Video Analysis ───────────────────────────────────────────────────────────
+opencv-python>=4.10.0
+numpy>=1.26.0
+
+# ── Music Source Separation ──────────────────────────────────────────────────
+demucs>=4.0.1
+
+# ── Face Detection ───────────────────────────────────────────────────────────
+mediapipe>=0.10.18
+
+# ── Text-to-Speech ──────────────────────────────────────────────────────────
+edge-tts>=6.1.0
+
+# ── GPU Monitoring ───────────────────────────────────────────────────────────
+pynvml>=11.5.0
+
+# ── Utilities ────────────────────────────────────────────────────────────────
+aiofiles>=24.1.0
+httpx>=0.27.0
