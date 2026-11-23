@@ -9,6 +9,7 @@ import {
   MessageSquare,
   Hash,
   Type,
+  Download,
 } from "lucide-react";
 import { ClipCandidate } from "@/types";
 import { openOutputFolder } from "@/lib/api";
@@ -48,6 +49,48 @@ export const UploadKitDrawer: React.FC<UploadKitDrawerProps> = ({
       await openOutputFolder(videoId || undefined, clip.clip_id);
     } catch (err) {
       console.error("Failed to open explorer", err);
+    }
+  };
+
+  const handleDownloadBundle = () => {
+    try {
+      const bundleData = {
+        clip_id: clip.clip_id,
+        video_id: videoId,
+        title_hook: clip.title_hook,
+        virality_score: clip.virality_score,
+        time_range: {
+          start_sec: clip.start_sec,
+          end_sec: clip.end_sec,
+          duration_sec: Math.round((clip.end_sec - clip.start_sec) * 10) / 10,
+        },
+        metadata: {
+          titles,
+          hashtags: hashtags.split(" "),
+          pinned_comment: pinnedComment,
+        },
+        banners: {
+          variant_a: clip.top_banner_text_a || clip.banner_text_a || null,
+          variant_b: clip.top_banner_text_b || clip.banner_text_b || null,
+        },
+        easter_egg_description: clip.easter_egg_description || null,
+        exported_at: new Date().toISOString(),
+        engine: "ViceClip Studio Broadcast Suite",
+      };
+
+      const blob = new Blob([JSON.stringify(bundleData, null, 2)], {
+        type: "application/json",
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `viceclip_${clip.clip_id}_metadata.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Failed to export metadata bundle", err);
     }
   };
 
@@ -158,11 +201,19 @@ export const UploadKitDrawer: React.FC<UploadKitDrawerProps> = ({
           </div>
         </div>
 
-        {/* Output Explorer Actions */}
-        <div className="pt-2">
+        {/* Output Explorer & Export Actions */}
+        <div className="pt-2 space-y-2">
+          <button
+            onClick={handleDownloadBundle}
+            className="w-full py-2.5 bg-studio-800 hover:bg-studio-750 border border-tally-amber/40 hover:border-tally-amber text-tally-amber hover:text-white rounded text-xs font-mono font-medium flex items-center justify-center gap-2 transition-colors shadow-sm"
+          >
+            <Download className="w-4 h-4" />
+            <span>Download metadata bundle (.json)</span>
+          </button>
+
           <button
             onClick={handleOpenFolder}
-            className="w-full py-2.5 bg-studio-800 hover:bg-studio-750 border border-studio-700 text-studio-200 hover:text-white rounded text-xs font-mono font-medium flex items-center justify-center gap-2 transition-colors"
+            className="w-full py-2.5 bg-studio-850 hover:bg-studio-800 border border-studio-700 text-studio-300 hover:text-white rounded text-xs font-mono font-medium flex items-center justify-center gap-2 transition-colors"
           >
             <FolderOpen className="w-4 h-4 text-studio-400" />
             <span>Open output folder</span>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Cpu, HardDrive, ListVideo, Settings, Sparkles, FolderOpen } from "lucide-react";
+import { Cpu, HardDrive, ListVideo, Settings, Sparkles, FolderOpen, Keyboard } from "lucide-react";
 import { SystemStatus } from "@/types";
 import { openOutputFolder } from "@/lib/api";
 
@@ -13,6 +13,7 @@ interface HeaderProps {
   onOpenBatchQueue: () => void;
   onOpenRetentionVault: () => void;
   onOpenCache: () => void;
+  onOpenShortcuts?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -23,6 +24,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenBatchQueue,
   onOpenRetentionVault,
   onOpenCache,
+  onOpenShortcuts,
 }) => {
   const vramPct = vramTotalMb > 0 ? Math.round((vramUsedMb / vramTotalMb) * 100) : 0;
   const isNvenc = systemStatus?.encoder === "h264_nvenc";
@@ -122,6 +124,16 @@ export const Header: React.FC<HeaderProps> = ({
           <Sparkles className="w-3.5 h-3.5 text-studio-400" />
           <span className="hidden sm:inline">Vault</span>
         </button>
+
+        {onOpenShortcuts && (
+          <button
+            onClick={onOpenShortcuts}
+            className="p-1.5 rounded-lg bg-studio-800 hover:bg-studio-700 border border-studio-600 text-studio-400 hover:text-studio-100 transition-colors shadow-studio-card"
+            title="Keyboard Shortcuts (?)"
+          >
+            <Keyboard className="w-4 h-4" />
+          </button>
+        )}
 
         <button
           onClick={onOpenSettings}

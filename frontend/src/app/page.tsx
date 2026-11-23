@@ -12,6 +12,7 @@ import { RetentionVaultModal } from "@/components/RetentionVaultModal";
 import { SettingsModal } from "@/components/SettingsModal";
 import { SmartCacheSidebar } from "@/components/SmartCacheSidebar";
 import { TelemetryBar } from "@/components/TelemetryBar";
+import { KeyboardShortcutsModal } from "@/components/KeyboardShortcutsModal";
 
 import {
   AudioSpike,
@@ -75,7 +76,21 @@ export default function StudioPage() {
   const [isBatchOpen, setIsBatchOpen] = useState(false);
   const [isVaultOpen, setIsVaultOpen] = useState(false);
   const [isCacheOpen, setIsCacheOpen] = useState(false);
+  const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
   const [uploadKitClip, setUploadKitClip] = useState<ClipCandidate | null>(null);
+
+  // Global '?' shortcut key listener
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if (["INPUT", "TEXTAREA"].includes((e.target as HTMLElement)?.tagName)) return;
+      if (e.key === "?" || (e.shiftKey && e.key === "/")) {
+        e.preventDefault();
+        setIsShortcutsOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleGlobalKeyDown);
+    return () => window.removeEventListener("keydown", handleGlobalKeyDown);
+  }, []);
 
   // Initial Hardware Capability Check
   useEffect(() => {
@@ -215,6 +230,7 @@ export default function StudioPage() {
         onOpenBatchQueue={() => setIsBatchOpen(true)}
         onOpenRetentionVault={() => setIsVaultOpen(true)}
         onOpenCache={() => setIsCacheOpen(true)}
+        onOpenShortcuts={() => setIsShortcutsOpen(true)}
       />
 
       {/* Main Studio Viewport */}
@@ -351,6 +367,10 @@ export default function StudioPage() {
         clip={uploadKitClip}
         videoId={activeVideoId}
         onClose={() => setUploadKitClip(null)}
+      />
+      <KeyboardShortcutsModal
+        isOpen={isShortcutsOpen}
+        onClose={() => setIsShortcutsOpen(false)}
       />
     </div>
   );

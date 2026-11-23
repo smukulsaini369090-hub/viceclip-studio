@@ -1,6 +1,7 @@
 import ast
 import pathlib
 import re
+import sys
 
 root = pathlib.Path("backend")
 issues = []

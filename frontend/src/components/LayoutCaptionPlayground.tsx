@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Layout, Type, Sparkles, Layers, Sliders } from "lucide-react";
+import { Layout, Type, Sparkles, Layers, Sliders, Shield, Smartphone } from "lucide-react";
 import { ClipCandidate, CropOverride } from "@/types";
 
 interface LayoutCaptionPlaygroundProps {
@@ -11,6 +11,8 @@ interface LayoutCaptionPlaygroundProps {
   onUpdateCrop: (crop: CropOverride) => void;
 }
 
+type SafeZonePlatform = "none" | "shorts" | "tiktok" | "reels";
+
 export const LayoutCaptionPlayground: React.FC<LayoutCaptionPlaygroundProps> = ({
   activeClip,
   captionTheme,
@@ -19,6 +21,7 @@ export const LayoutCaptionPlayground: React.FC<LayoutCaptionPlaygroundProps> = (
 }) => {
   const [layoutMode, setLayoutMode] = useState<"split" | "pure_916" | "blurred">("split");
   const [bannerVariant, setBannerVariant] = useState<"A" | "B">("A");
+  const [safeZonePlatform, setSafeZonePlatform] = useState<SafeZonePlatform>("shorts");
 
   // Sample banner text
   const bannerTextA = activeClip?.top_banner_text_a || activeClip?.banner_text_a || "DID YOU SPOT THIS IN GTA 6?";
@@ -138,16 +141,115 @@ export const LayoutCaptionPlayground: React.FC<LayoutCaptionPlaygroundProps> = (
             </div>
           </div>
 
-          {/* Simulated Controls Strip */}
-          <div className="absolute right-2 bottom-8 z-20 flex flex-col gap-2 items-center opacity-30">
-            <div className="w-4 h-4 rounded-full bg-white/30" />
-            <div className="w-4 h-4 rounded-full bg-white/30" />
-            <div className="w-4 h-4 rounded-full bg-white/30" />
-          </div>
+          {/* Platform Safe Zone Guide Overlay */}
+          {safeZonePlatform !== "none" && (
+            <div className="absolute inset-0 z-25 pointer-events-none select-none">
+              {/* Header UI Area */}
+              <div
+                className={`absolute top-0 left-0 right-0 border-b border-dashed border-red-400/40 bg-red-950/20 flex items-center justify-between px-3 text-[8px] font-mono text-red-300/80 ${
+                  safeZonePlatform === "tiktok" ? "h-[14%]" : safeZonePlatform === "shorts" ? "h-[12%]" : "h-[10%]"
+                }`}
+              >
+                <span>Header UI</span>
+                <span className="uppercase">{safeZonePlatform}</span>
+              </div>
+
+              {/* Right-Rail Engagement Buttons (Like, Share, Comment) */}
+              <div
+                className={`absolute right-0 border-l border-dashed border-red-400/40 bg-red-950/20 flex flex-col items-center justify-center gap-2 text-[8px] font-mono text-red-300/90 py-2 ${
+                  safeZonePlatform === "tiktok"
+                    ? "top-[32%] bottom-[22%] w-[46px]"
+                    : safeZonePlatform === "shorts"
+                    ? "top-[38%] bottom-[16%] w-[42px]"
+                    : "top-[42%] bottom-[18%] w-[40px]"
+                }`}
+              >
+                <div className="w-4 h-4 rounded-full border border-red-400/50 flex items-center justify-center text-[7px]">❤️</div>
+                <div className="w-4 h-4 rounded-full border border-red-400/50 flex items-center justify-center text-[7px]">💬</div>
+                <div className="w-4 h-4 rounded-full border border-red-400/50 flex items-center justify-center text-[7px]">↗️</div>
+                <span className="text-[7px] rotate-90 tracking-tighter opacity-70">UI RAIL</span>
+              </div>
+
+              {/* Bottom Metadata & Captions Danger Zone */}
+              <div
+                className={`absolute bottom-0 left-0 right-0 border-t border-dashed border-red-400/40 bg-red-950/20 flex items-center justify-between px-3 text-[8px] font-mono text-red-300/80 ${
+                  safeZonePlatform === "tiktok" ? "h-[22%]" : safeZonePlatform === "shorts" ? "h-[16%]" : "h-[18%]"
+                }`}
+              >
+                <span>@creator & audio ticker</span>
+                <span className="text-[7px] text-red-400/80">AVOID SUBTITLES</span>
+              </div>
+
+              {/* Center Safe Canvas Rect */}
+              <div
+                className="absolute border border-dashed border-tally-emerald/40 pointer-events-none rounded"
+                style={{
+                  top: safeZonePlatform === "tiktok" ? "14%" : safeZonePlatform === "shorts" ? "12%" : "10%",
+                  bottom: safeZonePlatform === "tiktok" ? "22%" : safeZonePlatform === "shorts" ? "16%" : "18%",
+                  left: "8px",
+                  right: safeZonePlatform === "tiktok" ? "50px" : safeZonePlatform === "shorts" ? "46px" : "44px",
+                }}
+              >
+                <span className="absolute top-1 left-1.5 text-[7px] font-mono text-tally-emerald/80 font-medium">
+                  SAFE CONTENT AREA
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* Simulated Controls Strip fallback when safe-zone off */}
+          {safeZonePlatform === "none" && (
+            <div className="absolute right-2 bottom-8 z-20 flex flex-col gap-2 items-center opacity-30">
+              <div className="w-4 h-4 rounded-full bg-white/30" />
+              <div className="w-4 h-4 rounded-full bg-white/30" />
+              <div className="w-4 h-4 rounded-full bg-white/30" />
+            </div>
+          )}
         </div>
 
         {/* Playground Controls Side Panel */}
         <div className="flex-1 max-w-sm flex flex-col gap-4">
+          {/* Platform Safe Zone Preview Selector */}
+          <div className="bg-studio-950 border border-studio-800 p-3.5 rounded">
+            <div className="text-xs font-mono text-studio-400 mb-2 flex items-center justify-between font-medium">
+              <span className="flex items-center gap-1.5">
+                <Shield className="w-3.5 h-3.5 text-studio-400" />
+                <span>Safe zone preview</span>
+              </span>
+              {safeZonePlatform !== "none" ? (
+                <span className="text-[10px] font-mono text-tally-emerald bg-tally-emerald/10 border border-tally-emerald/30 px-1.5 py-0.5 rounded">
+                  Active
+                </span>
+              ) : (
+                <span className="text-[10px] font-mono text-studio-500">Off</span>
+              )}
+            </div>
+            <div className="grid grid-cols-4 gap-1.5">
+              {(
+                [
+                  { id: "none", label: "Off" },
+                  { id: "shorts", label: "Shorts" },
+                  { id: "tiktok", label: "TikTok" },
+                  { id: "reels", label: "Reels" },
+                ] as const
+              ).map((plat) => (
+                <button
+                  key={plat.id}
+                  onClick={() => setSafeZonePlatform(plat.id)}
+                  className={`py-1.5 px-1.5 rounded text-xs font-mono border transition-colors text-center ${
+                    safeZonePlatform === plat.id
+                      ? "bg-studio-800 border-tally-amber text-tally-amber font-medium ring-1 ring-tally-amber/30"
+                      : "bg-studio-900 border-studio-800 text-studio-400 hover:text-white"
+                  }`}
+                >
+                  {plat.label}
+                </button>
+              ))}
+            </div>
+            <p className="text-[10px] font-mono text-studio-500 mt-2">
+              Prevents captions & hooks from being obscured by UI buttons or title bars.
+            </p>
+          </div>
           {/* Caption Theme Switcher */}
           <div className="bg-studio-950 border border-studio-800 p-3.5 rounded">
             <div className="text-xs font-mono text-studio-400 mb-2.5 flex items-center gap-1.5 font-medium">

@@ -175,6 +175,27 @@ export const HeatmapTimeline: React.FC<HeatmapTimelineProps> = ({
       .join(" ");
   };
 
+  // Generate Simulated Audio Waveform Bars (80 bars across timeline)
+  const getAudioWaveformBars = () => {
+    if (durationSec <= 0) return [];
+    const barsCount = 80;
+    const bars = [];
+    for (let i = 0; i < barsCount; i++) {
+      const timeAtBar = (i / barsCount) * durationSec;
+      const nearSpike = audioSpikes.some(
+        (sp) => Math.abs(sp.timestamp_sec - timeAtBar) < Math.max(1.5, durationSec * 0.02)
+      );
+      // Pseudo-random deterministic amplitude
+      const seed = Math.sin(i * 12.9898 + 78.233) * 43758.5453;
+      const noise = seed - Math.floor(seed);
+      const baseHeight = 5 + noise * 14;
+      const height = nearSpike ? Math.min(32, baseHeight * 2.2) : baseHeight;
+      const x = (i / barsCount) * 1000 + 4;
+      bars.push({ x, height, isHot: nearSpike });
+    }
+    return bars;
+  };
+
   return (
     <div className="bg-studio-900 border border-studio-700/80 rounded-lg p-4 sm:p-5 flex flex-col gap-4 shadow-studio-card">
       {/* Player Header */}
@@ -261,16 +282,36 @@ export const HeatmapTimeline: React.FC<HeatmapTimelineProps> = ({
           onClick={handleTimelineClick}
           className="relative h-20 bg-studio-950 border border-studio-800 rounded cursor-pointer overflow-hidden select-none"
         >
+          {/* Simulated DAW / NLE Audio Waveform Track */}
+          <svg
+            viewBox="0 0 1000 50"
+            preserveAspectRatio="none"
+            className="absolute inset-0 w-full h-full pointer-events-none opacity-40"
+          >
+            {getAudioWaveformBars().map((bar, idx) => (
+              <line
+                key={idx}
+                x1={bar.x}
+                y1={48 - bar.height}
+                x2={bar.x}
+                y2={48}
+                stroke={bar.isHot ? "#F59E0B" : "#475569"}
+                strokeWidth="5"
+                strokeLinecap="round"
+              />
+            ))}
+          </svg>
+
           {/* Heatmap SVG Curve */}
           <svg
             viewBox="0 0 1000 50"
             preserveAspectRatio="none"
-            className="absolute inset-0 w-full h-full pointer-events-none opacity-50"
+            className="absolute inset-0 w-full h-full pointer-events-none opacity-60"
           >
             <polyline
               fill="none"
-              stroke="#64748B"
-              strokeWidth="2"
+              stroke="#94A3B8"
+              strokeWidth="2.5"
               points={getHeatmapSvgPoints()}
             />
           </svg>
@@ -316,7 +357,10 @@ export const HeatmapTimeline: React.FC<HeatmapTimelineProps> = ({
         <div className="flex items-center justify-between text-[11px] font-mono text-studio-500">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-studio-500" /> Retention curve
+              <span className="w-2 h-2 rounded-full bg-slate-400" /> Retention curve
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-studio-600" /> Audio waveform
             </span>
             <span className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-tally-red/70" /> Audio spikes
