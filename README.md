@@ -92,7 +92,7 @@ Most cloud-based AI clippers (such as OpusClip, Klap, or Munch) charge **$20 to 
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/your-username/viceclip-studio.git
+git clone https://github.com/smukulsaini369090-hub/viceclip-studio.git
 cd viceclip-studio
 ```
 
