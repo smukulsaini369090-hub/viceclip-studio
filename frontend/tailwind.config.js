@@ -9,25 +9,23 @@ module.exports = {
     extend: {
       colors: {
         studio: {
-          950: "#07070A",
-          900: "#0A0A0F",
-          850: "#0F0F15",
-          800: "#121218",
-          750: "#161620",
-          700: "#1A1A24",
-          600: "#242432",
-          500: "#323244",
-          400: "#505068",
-          300: "#7E7E9A",
-          200: "#B0B0C8",
-          100: "#E2E2F0",
+          950: "#08090B", // Deepest viewport canvas & rail
+          900: "#0B0C0E", // Page background
+          850: "#0E1013", // Secondary background
+          800: "#111317", // Card surface
+          750: "#14171D", // Card hover
+          700: "#181B20", // Raised input & active row
+          600: "#22262E", // Hairline border
+          500: "#2D323E", // Focused border
+          400: "#626875", // Muted text & metadata
+          300: "#959CA8", // Secondary text
+          200: "#CBD0D8", // Body text
+          100: "#ECEFF4", // Primary high-contrast text
         },
-        vice: {
-          pink: "#FF2E93",
-          cyan: "#00F0FF",
-          yellow: "#FFE600",
-          purple: "#9D00FF",
-          dark: "#0A0A0F",
+        tally: {
+          amber: "#F59E0B",
+          emerald: "#10B981",
+          red: "#EF4444",
         },
       },
       fontFamily: {
@@ -43,20 +41,11 @@ module.exports = {
         ],
       },
       boxShadow: {
-        "neon-pink": "0 0 15px rgba(255, 46, 147, 0.35)",
-        "neon-cyan": "0 0 15px rgba(0, 240, 255, 0.35)",
-        "neon-yellow": "0 0 15px rgba(255, 230, 0, 0.35)",
-        "studio-glow": "0 8px 32px rgba(0, 0, 0, 0.6)",
+        "studio-card": "0 1px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04)",
+        "studio-raised": "0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08)",
       },
       animation: {
         "pulse-subtle": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        "scanner": "scan 2s linear infinite",
-      },
-      keyframes: {
-        scan: {
-          "0%": { transform: "translateY(-100%)" },
-          "100%": { transform: "translateY(1000%)" },
-        },
       },
     },
   },

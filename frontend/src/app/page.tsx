@@ -221,9 +221,9 @@ export default function StudioPage() {
       <main className="flex-1 max-w-[1600px] w-full mx-auto p-4 sm:p-6 space-y-6">
         {/* In-app Notification Banners */}
         {errorMessage && (
-          <div className="flex items-center justify-between p-3.5 bg-[#2A1218] border border-[#FF3366]/40 text-[#FF6B8B] rounded-xl text-xs font-mono shadow-lg">
+          <div className="flex items-center justify-between p-3 bg-studio-900 border border-tally-red/40 text-tally-red rounded text-xs font-mono">
             <div className="flex items-center gap-2.5">
-              <AlertTriangle className="w-4 h-4 text-[#FF3366] shrink-0" />
+              <AlertTriangle className="w-4 h-4 text-tally-red shrink-0" />
               <span>{errorMessage}</span>
             </div>
             <button
@@ -236,9 +236,9 @@ export default function StudioPage() {
         )}
 
         {successMessage && (
-          <div className="flex items-center justify-between p-3.5 bg-[#0D251A] border border-[#00F0FF]/30 text-[#00F0FF] rounded-xl text-xs font-mono shadow-lg">
+          <div className="flex items-center justify-between p-3 bg-studio-900 border border-tally-emerald/40 text-tally-emerald rounded text-xs font-mono">
             <div className="flex items-center gap-2.5">
-              <CheckCircle2 className="w-4 h-4 text-[#00F0FF] shrink-0" />
+              <CheckCircle2 className="w-4 h-4 text-tally-emerald shrink-0" />
               <span>{successMessage}</span>
             </div>
             <button
@@ -298,23 +298,23 @@ export default function StudioPage() {
 
         {/* Candidate Clips Grid */}
         <div className="space-y-4">
-          <div className="flex items-center justify-between border-b border-[#262636] pb-2">
+          <div className="flex items-center justify-between border-b border-studio-800 pb-2">
             <div className="flex items-center gap-2">
-              <Film className="w-4 h-4 text-[#FF2E93]" />
-              <h2 className="font-bold text-white text-sm tracking-tight">
-                AI VIRAL CLIPS ({clips.length})
+              <Film className="w-4 h-4 text-studio-400" />
+              <h2 className="font-medium text-studio-100 text-sm tracking-tight">
+                Candidate clips ({clips.length})
               </h2>
             </div>
             {clips.length > 0 && (
-              <span className="text-xs font-mono text-[#7E7E9A]">
-                Ranked by 4-Vector Virality Scorecard
+              <span className="text-xs font-mono text-studio-400">
+                Ranked by multi-vector virality score
               </span>
             )}
           </div>
 
           {clips.length === 0 ? (
-            <div className="p-12 text-center text-xs font-mono text-[#505068] bg-[#121218] border border-dashed border-[#262636] rounded-xl">
-              No candidate clips yet. Paste a GTA 6 YouTube video URL above and click Analyze Video.
+            <div className="p-12 text-center text-xs font-mono text-studio-500 bg-studio-900 border border-dashed border-studio-800 rounded">
+              No candidate clips yet. Paste a YouTube URL above and click Analyze video.
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

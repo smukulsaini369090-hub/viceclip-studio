@@ -176,26 +176,26 @@ export const HeatmapTimeline: React.FC<HeatmapTimelineProps> = ({
   };
 
   return (
-    <div className="bg-[#121218] border border-[#262636] rounded-xl p-4 sm:p-5 flex flex-col gap-4 shadow-studio-glow">
+    <div className="bg-studio-900 border border-studio-700/80 rounded-lg p-4 sm:p-5 flex flex-col gap-4 shadow-studio-card">
       {/* Player Header */}
-      <div className="flex items-center justify-between text-xs font-mono text-[#7E7E9A]">
+      <div className="flex items-center justify-between text-xs font-mono text-studio-400">
         <div className="flex items-center gap-2">
-          <span className="text-white font-medium">PRECISION NLE TRIMMER</span>
+          <span className="text-studio-200 font-medium">Precision trimmer</span>
           {activeClip && (
-            <span className="text-[#00F0FF] px-2 py-0.5 rounded bg-[#00F0FF]/10 border border-[#00F0FF]/30">
+            <span className="text-tally-amber px-2 py-0.5 rounded bg-tally-amber/10 border border-tally-amber/30 text-xs font-mono font-medium">
               {activeClip.title_hook}
             </span>
           )}
         </div>
         <div className="flex items-center gap-3">
           <span>
-            TIME: <span className="text-white tabular-nums">{formatSec(currentTime)}</span> /{" "}
-            <span className="tabular-nums">{formatSec(durationSec)}</span>
+            Time: <span className="text-studio-100 tabular-nums">{formatSec(currentTime)}</span> /{" "}
+            <span className="tabular-nums text-studio-400">{formatSec(durationSec)}</span>
           </span>
-          <span className="text-[#262636]">|</span>
+          <span className="text-studio-700">|</span>
           <span>
-            CLIP DURATION:{" "}
-            <span className="text-[#FF2E93] tabular-nums font-bold">
+            Clip duration:{" "}
+            <span className="text-tally-amber tabular-nums font-medium">
               {formatSec(trimEnd - trimStart)}
             </span>
           </span>
@@ -203,7 +203,7 @@ export const HeatmapTimeline: React.FC<HeatmapTimelineProps> = ({
       </div>
 
       {/* HTML5 Video Canvas */}
-      <div className="relative aspect-video bg-black rounded-lg overflow-hidden border border-[#262636] group">
+      <div className="relative aspect-video bg-black rounded-md overflow-hidden border border-studio-800 group">
         {videoSrc ? (
           <video
             ref={videoRef}
@@ -214,8 +214,8 @@ export const HeatmapTimeline: React.FC<HeatmapTimelineProps> = ({
             className="w-full h-full object-contain"
           />
         ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center text-[#505068] text-xs font-mono gap-2">
-            <Play className="w-8 h-8 opacity-40" />
+          <div className="w-full h-full flex flex-col items-center justify-center text-studio-500 text-xs font-mono gap-2">
+            <Play className="w-8 h-8 opacity-40 text-studio-600" />
             <span>No video loaded. Enter a YouTube URL above.</span>
           </div>
         )}
@@ -225,13 +225,13 @@ export const HeatmapTimeline: React.FC<HeatmapTimelineProps> = ({
           <div className="flex items-center gap-2 pointer-events-auto">
             <button
               onClick={togglePlay}
-              className="p-2 rounded bg-white text-black hover:bg-[#00F0FF] transition-colors"
+              className="p-2 rounded bg-studio-100 text-studio-950 hover:bg-white transition-colors"
             >
               {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current" />}
             </button>
             <button
               onClick={toggleMute}
-              className="p-2 rounded bg-[#1A1A24] text-white hover:bg-[#262636] transition-colors"
+              className="p-2 rounded bg-studio-800 text-studio-200 hover:bg-studio-700 transition-colors"
             >
               {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
             </button>
@@ -240,15 +240,15 @@ export const HeatmapTimeline: React.FC<HeatmapTimelineProps> = ({
           <div className="flex items-center gap-2 pointer-events-auto">
             <button
               onClick={() => setIsLooping(!isLooping)}
-              className={`px-3 py-1.5 rounded text-xs font-mono flex items-center gap-1.5 border transition-all ${
+              className={`px-3 py-1.5 rounded text-xs font-mono flex items-center gap-1.5 border transition-colors ${
                 isLooping
-                  ? "bg-[#FF2E93] border-[#FF2E93] text-black font-bold shadow-neon-pink"
-                  : "bg-[#1A1A24] border-[#262636] text-[#7E7E9A] hover:text-white"
+                  ? "bg-tally-amber border-tally-amber text-studio-950 font-medium"
+                  : "bg-studio-800 border-studio-700 text-studio-300 hover:text-white"
               }`}
-              title="Infinite Loop Preview: seamlessly loops between clip end and clip start"
+              title="Infinite loop preview: seamlessly loops between clip end and clip start"
             >
               <Repeat className="w-3.5 h-3.5" />
-              <span>INFINITE LOOP SIMULATION</span>
+              <span>Loop range</span>
             </button>
           </div>
         </div>
@@ -259,17 +259,17 @@ export const HeatmapTimeline: React.FC<HeatmapTimelineProps> = ({
         <div
           ref={timelineRef}
           onClick={handleTimelineClick}
-          className="relative h-20 bg-[#0A0A0F] border border-[#262636] rounded-lg cursor-pointer overflow-hidden select-none"
+          className="relative h-20 bg-studio-950 border border-studio-800 rounded cursor-pointer overflow-hidden select-none"
         >
           {/* Heatmap SVG Curve */}
           <svg
             viewBox="0 0 1000 50"
             preserveAspectRatio="none"
-            className="absolute inset-0 w-full h-full pointer-events-none opacity-60"
+            className="absolute inset-0 w-full h-full pointer-events-none opacity-50"
           >
             <polyline
               fill="none"
-              stroke="#00F0FF"
+              stroke="#64748B"
               strokeWidth="2"
               points={getHeatmapSvgPoints()}
             />
@@ -278,14 +278,14 @@ export const HeatmapTimeline: React.FC<HeatmapTimelineProps> = ({
           {/* Active Clip Highlight Zone */}
           {durationSec > 0 && (
             <div
-              className="absolute top-0 bottom-0 bg-[#FF2E93]/20 border-x-2 border-[#FF2E93] pointer-events-none"
+              className="absolute top-0 bottom-0 bg-tally-amber/15 border-x-2 border-tally-amber pointer-events-none"
               style={{
                 left: `${(trimStart / durationSec) * 100}%`,
                 width: `${((trimEnd - trimStart) / durationSec) * 100}%`,
               }}
             >
-              <div className="absolute top-1 left-2 text-[10px] font-mono text-[#FF2E93] font-bold">
-                ACTIVE CLIP
+              <div className="absolute top-1 left-2 text-[10px] font-mono text-tally-amber font-medium">
+                Active range
               </div>
             </div>
           )}
@@ -295,60 +295,60 @@ export const HeatmapTimeline: React.FC<HeatmapTimelineProps> = ({
             audioSpikes.map((sp, idx) => (
               <div
                 key={`a-${idx}`}
-                className="absolute top-0 bottom-0 w-[2px] bg-red-500/80 pointer-events-none"
+                className="absolute top-0 bottom-0 w-[2px] bg-tally-red/70 pointer-events-none"
                 style={{ left: `${(sp.timestamp_sec / durationSec) * 100}%` }}
-                title={`Audio dB spike: ${sp.spike_type} at ${formatSec(sp.timestamp_sec)}`}
+                title={`Audio spike: ${sp.spike_type} at ${formatSec(sp.timestamp_sec)}`}
               />
             ))}
 
           {/* Playhead Marker */}
           {durationSec > 0 && (
             <div
-              className="absolute top-0 bottom-0 w-[2px] bg-white pointer-events-none shadow-lg z-10"
+              className="absolute top-0 bottom-0 w-[2px] bg-white pointer-events-none shadow-md z-10"
               style={{ left: `${(currentTime / durationSec) * 100}%` }}
             >
-              <div className="w-2.5 h-2.5 bg-white -ml-[4px] rounded-full" />
+              <div className="w-2.5 h-2.5 bg-white -ml-[4px] rounded-full shadow" />
             </div>
           )}
         </div>
 
         {/* Legend */}
-        <div className="flex items-center justify-between text-[11px] font-mono text-[#505068]">
+        <div className="flex items-center justify-between text-[11px] font-mono text-studio-500">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-[#00F0FF]" /> Most Replayed Heatmap
+              <span className="w-2 h-2 rounded-full bg-studio-500" /> Retention curve
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-red-500" /> Audio dB Spikes
+              <span className="w-2 h-2 rounded-full bg-tally-red/70" /> Audio spikes
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-[#FF2E93]" /> Active 9:16 Clip Zone
+              <span className="w-2 h-2 rounded-full bg-tally-amber" /> Active clip zone
             </span>
           </div>
-          <div>Keyboard: Space (Play) | J/L (Seek) | I/O (Trim) | Arrows (0.1s Step)</div>
+          <div>Shortcuts: Space (Play) | J/L (Seek) | I/O (Trim) | Arrows (0.1s step)</div>
         </div>
       </div>
 
       {/* 0.1s Precision Nudge Controls */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-[#1E1E2A]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-studio-800">
         {/* Start Trim Nudge */}
-        <div className="flex items-center justify-between bg-[#0A0A0F] border border-[#262636] p-2.5 rounded-lg">
+        <div className="flex items-center justify-between bg-studio-950 border border-studio-800 p-2.5 rounded">
           <div>
-            <div className="text-[11px] font-mono text-[#7E7E9A]">TRIM IN-POINT (START)</div>
-            <div className="text-sm font-mono font-bold text-white tabular-nums">
+            <div className="text-[11px] font-mono text-studio-400">In-point (start)</div>
+            <div className="text-sm font-mono font-medium text-studio-100 tabular-nums">
               {formatSec(trimStart)}
             </div>
           </div>
           <div className="flex items-center gap-1">
             <button
               onClick={() => nudgeTrim("start", -0.1)}
-              className="px-2 py-1 bg-[#1A1A24] hover:bg-[#262636] text-[#E2E2F0] rounded text-xs font-mono"
+              className="px-2.5 py-1 bg-studio-800 hover:bg-studio-700 text-studio-200 rounded text-xs font-mono border border-studio-700/60 transition-colors"
             >
               -0.1s
             </button>
             <button
               onClick={() => nudgeTrim("start", +0.1)}
-              className="px-2 py-1 bg-[#1A1A24] hover:bg-[#262636] text-[#E2E2F0] rounded text-xs font-mono"
+              className="px-2.5 py-1 bg-studio-800 hover:bg-studio-700 text-studio-200 rounded text-xs font-mono border border-studio-700/60 transition-colors"
             >
               +0.1s
             </button>
@@ -356,23 +356,23 @@ export const HeatmapTimeline: React.FC<HeatmapTimelineProps> = ({
         </div>
 
         {/* End Trim Nudge */}
-        <div className="flex items-center justify-between bg-[#0A0A0F] border border-[#262636] p-2.5 rounded-lg">
+        <div className="flex items-center justify-between bg-studio-950 border border-studio-800 p-2.5 rounded">
           <div>
-            <div className="text-[11px] font-mono text-[#7E7E9A]">TRIM OUT-POINT (END)</div>
-            <div className="text-sm font-mono font-bold text-white tabular-nums">
+            <div className="text-[11px] font-mono text-studio-400">Out-point (end)</div>
+            <div className="text-sm font-mono font-medium text-studio-100 tabular-nums">
               {formatSec(trimEnd)}
             </div>
           </div>
           <div className="flex items-center gap-1">
             <button
               onClick={() => nudgeTrim("end", -0.1)}
-              className="px-2 py-1 bg-[#1A1A24] hover:bg-[#262636] text-[#E2E2F0] rounded text-xs font-mono"
+              className="px-2.5 py-1 bg-studio-800 hover:bg-studio-700 text-studio-200 rounded text-xs font-mono border border-studio-700/60 transition-colors"
             >
               -0.1s
             </button>
             <button
               onClick={() => nudgeTrim("end", +0.1)}
-              className="px-2 py-1 bg-[#1A1A24] hover:bg-[#262636] text-[#E2E2F0] rounded text-xs font-mono"
+              className="px-2.5 py-1 bg-studio-800 hover:bg-studio-700 text-studio-200 rounded text-xs font-mono border border-studio-700/60 transition-colors"
             >
               +0.1s
             </button>

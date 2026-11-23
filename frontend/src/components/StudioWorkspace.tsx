@@ -82,7 +82,7 @@ export const StudioWorkspace: React.FC<StudioWorkspaceProps> = ({
   };
 
   return (
-    <div className="bg-[#121218] border border-[#262636] rounded-xl p-4 sm:p-5 shadow-studio-glow">
+    <div className="bg-studio-800 border border-studio-600 rounded-xl p-4 sm:p-5 shadow-studio-card">
       {/* URL Input Bar */}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
@@ -90,113 +90,118 @@ export const StudioWorkspace: React.FC<StudioWorkspaceProps> = ({
             type="text"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            placeholder="Paste YouTube URL or Video ID (e.g., https://youtu.be/...)"
+            placeholder="Paste YouTube URL or video ID (e.g. https://youtu.be/...)"
             disabled={isAnalyzing}
-            className="w-full bg-[#0A0A0F] border border-[#262636] focus:border-[#00F0FF] rounded-lg px-4 py-3 text-sm text-white placeholder-[#505068] outline-none transition-all disabled:opacity-50"
+            className="w-full bg-studio-950 border border-studio-600 focus:border-studio-400 rounded-lg px-3.5 py-2.5 text-xs font-mono text-studio-100 placeholder-studio-400 outline-none transition-colors disabled:opacity-50"
           />
         </div>
         <button
           onClick={onAnalyze}
           disabled={isAnalyzing || !url.trim()}
-          className="px-6 py-3 bg-gradient-to-r from-[#FF2E93] to-[#00F0FF] hover:opacity-90 disabled:opacity-40 text-black font-bold text-sm tracking-wider rounded-lg transition-all flex items-center justify-center gap-2 shadow-neon-pink disabled:shadow-none whitespace-nowrap"
+          className="px-5 py-2.5 bg-studio-100 hover:bg-white disabled:opacity-40 text-studio-950 font-medium text-xs rounded-lg transition-colors flex items-center justify-center gap-2 shadow-studio-raised disabled:shadow-none whitespace-nowrap"
         >
           {isAnalyzing ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin" />
-              <span>ANALYZING...</span>
+              <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              <span>Analyzing…</span>
             </>
           ) : (
             <>
-              <Play className="w-4 h-4 fill-current" />
-              <span>ANALYZE VIDEO</span>
+              <Play className="w-3.5 h-3.5 fill-current" />
+              <span>Analyze video</span>
             </>
           )}
         </button>
       </div>
 
       {/* Feature Toggles Strip */}
-      <div className="mt-4 pt-4 border-t border-[#1E1E2A] flex flex-wrap items-center gap-2">
-        <span className="text-[11px] font-mono tracking-wider text-[#7E7E9A] mr-1">
-          PIPELINE MODES:
+      <div className="mt-3.5 pt-3.5 border-t border-studio-600 flex flex-wrap items-center gap-1.5">
+        <span className="text-[11px] font-mono text-studio-400 mr-1.5">
+          Pipeline modes:
         </span>
 
         {/* Demucs */}
         <button
           onClick={() => toggleSetting("enable_demucs")}
-          className={`px-2.5 py-1.5 rounded-md text-xs font-mono border transition-all flex items-center gap-1.5 ${
+          className={`px-2.5 py-1 rounded-md text-[11px] font-mono border transition-all flex items-center gap-1.5 ${
             settings.enable_demucs
-              ? "bg-[#FF2E93]/15 border-[#FF2E93] text-[#FF2E93]"
-              : "bg-[#0A0A0F] border-[#262636] text-[#7E7E9A] hover:border-[#505068]"
+              ? "bg-studio-700 border-studio-400 text-studio-100"
+              : "bg-studio-950 border-studio-600 text-studio-400 hover:border-studio-500 hover:text-studio-300"
           }`}
           title="Demucs stem separation: removes copyrighted radio music while keeping speech + SFX"
         >
-          <Shield className="w-3.5 h-3.5" />
+          <span className={`w-1.5 h-1.5 rounded-full ${settings.enable_demucs ? "bg-tally-amber" : "bg-transparent"}`} />
+          <Shield className="w-3 h-3 text-studio-400" />
           <span>Copyright Shield</span>
         </button>
 
         {/* Commentary */}
         <button
           onClick={() => toggleSetting("enable_commentary")}
-          className={`px-2.5 py-1.5 rounded-md text-xs font-mono border transition-all flex items-center gap-1.5 ${
+          className={`px-2.5 py-1 rounded-md text-[11px] font-mono border transition-all flex items-center gap-1.5 ${
             settings.enable_commentary
-              ? "bg-[#00F0FF]/15 border-[#00F0FF] text-[#00F0FF]"
-              : "bg-[#0A0A0F] border-[#262636] text-[#7E7E9A] hover:border-[#505068]"
+              ? "bg-studio-700 border-studio-400 text-studio-100"
+              : "bg-studio-950 border-studio-600 text-studio-400 hover:border-studio-500 hover:text-studio-300"
           }`}
           title="Transformative AI voiceover via edge-tts (Anti-Reused Content)"
         >
-          <Mic className="w-3.5 h-3.5" />
+          <span className={`w-1.5 h-1.5 rounded-full ${settings.enable_commentary ? "bg-tally-amber" : "bg-transparent"}`} />
+          <Mic className="w-3 h-3 text-studio-400" />
           <span>Transformative Commentary</span>
         </button>
 
         {/* Easter Egg Zoom */}
         <button
           onClick={() => toggleSetting("enable_easter_egg_zoom")}
-          className={`px-2.5 py-1.5 rounded-md text-xs font-mono border transition-all flex items-center gap-1.5 ${
+          className={`px-2.5 py-1 rounded-md text-[11px] font-mono border transition-all flex items-center gap-1.5 ${
             settings.enable_easter_egg_zoom
-              ? "bg-[#FFE600]/15 border-[#FFE600] text-[#FFE600]"
-              : "bg-[#0A0A0F] border-[#262636] text-[#7E7E9A] hover:border-[#505068]"
+              ? "bg-studio-700 border-studio-400 text-studio-100"
+              : "bg-studio-950 border-studio-600 text-studio-400 hover:border-studio-500 hover:text-studio-300"
           }`}
           title="God-Mode Easter-Egg Auto-Zoom: Gemini Vision detects coordinates for smooth zoom callout"
         >
-          <ZoomIn className="w-3.5 h-3.5" />
+          <span className={`w-1.5 h-1.5 rounded-full ${settings.enable_easter_egg_zoom ? "bg-tally-amber" : "bg-transparent"}`} />
+          <ZoomIn className="w-3 h-3 text-studio-400" />
           <span>Easter-Egg Zoom</span>
         </button>
 
         {/* Dead Air Cut */}
         <button
           onClick={() => toggleSetting("enable_dead_air_cut")}
-          className={`px-2.5 py-1.5 rounded-md text-xs font-mono border transition-all flex items-center gap-1.5 ${
+          className={`px-2.5 py-1 rounded-md text-[11px] font-mono border transition-all flex items-center gap-1.5 ${
             settings.enable_dead_air_cut
-              ? "bg-[#00F0FF]/15 border-[#00F0FF] text-[#00F0FF]"
-              : "bg-[#0A0A0F] border-[#262636] text-[#7E7E9A] hover:border-[#505068]"
+              ? "bg-studio-700 border-studio-400 text-studio-100"
+              : "bg-studio-950 border-studio-600 text-studio-400 hover:border-studio-500 hover:text-studio-300"
           }`}
           title="Splices out silence > 0.4s with smooth audio crossfades"
         >
-          <Scissors className="w-3.5 h-3.5" />
+          <span className={`w-1.5 h-1.5 rounded-full ${settings.enable_dead_air_cut ? "bg-tally-amber" : "bg-transparent"}`} />
+          <Scissors className="w-3 h-3 text-studio-400" />
           <span>Dead-Air Cut</span>
         </button>
 
         {/* Dual Hook */}
         <button
           onClick={() => toggleSetting("enable_dual_hook")}
-          className={`px-2.5 py-1.5 rounded-md text-xs font-mono border transition-all flex items-center gap-1.5 ${
+          className={`px-2.5 py-1 rounded-md text-[11px] font-mono border transition-all flex items-center gap-1.5 ${
             settings.enable_dual_hook
-              ? "bg-[#FF2E93]/15 border-[#FF2E93] text-[#FF2E93]"
-              : "bg-[#0A0A0F] border-[#262636] text-[#7E7E9A] hover:border-[#505068]"
+              ? "bg-studio-700 border-studio-400 text-studio-100"
+              : "bg-studio-950 border-studio-600 text-studio-400 hover:border-studio-500 hover:text-studio-300"
           }`}
           title="Renders Variant A & Variant B with different curiosity banners for A/B testing"
         >
-          <Split className="w-3.5 h-3.5" />
+          <span className={`w-1.5 h-1.5 rounded-full ${settings.enable_dual_hook ? "bg-tally-amber" : "bg-transparent"}`} />
+          <Split className="w-3 h-3 text-studio-400" />
           <span>Dual-Hook A/B</span>
         </button>
 
         {/* Manual Web Mode Toggle */}
         <button
           onClick={() => toggleSetting("manual_gemini_mode")}
-          className={`px-2.5 py-1.5 rounded-md text-xs font-mono border transition-all flex items-center gap-1.5 ${
+          className={`px-2.5 py-1 rounded-md text-[11px] font-mono border transition-all flex items-center gap-1.5 ${
             settings.manual_gemini_mode
-              ? "bg-[#9D00FF]/20 border-[#9D00FF] text-white"
-              : "bg-[#0A0A0F] border-[#262636] text-[#7E7E9A] hover:border-[#505068]"
+              ? "bg-studio-700 border-studio-400 text-studio-100"
+              : "bg-studio-950 border-studio-600 text-studio-400 hover:border-studio-500 hover:text-studio-300"
           }`}
           title="Zero-cost mode: Copy compiled prompt to gemini.google.com and paste response back"
         >

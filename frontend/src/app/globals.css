@@ -3,69 +3,54 @@
 @tailwind utilities;
 
 :root {
-  --bg-matte: #0A0A0F;
-  --surface-card: #121218;
-  --surface-elevated: #1A1A24;
-  --border-subtle: #262636;
-  --vice-pink: #FF2E93;
-  --vice-cyan: #00F0FF;
-  --vice-yellow: #FFE600;
+  --bg-matte: #0B0C0E;
+  --surface-card: #111317;
+  --surface-elevated: #181B20;
+  --border-subtle: #22262E;
+  --border-active: #2D323E;
+  --text-primary: #ECEFF4;
+  --text-secondary: #959CA8;
+  --text-muted: #626875;
+  --tally-amber: #F59E0B;
+  --tally-emerald: #10B981;
 }
 
 body {
   background-color: var(--bg-matte);
-  color: #E2E2F0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
+  letter-spacing: -0.01em;
 }
 
-/* Custom Studio Scrollbar */
+/* Precision Studio Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A0A0F;
+  background: #0B0C0E;
 }
 ::-webkit-scrollbar-thumb {
-  background: #262636;
-  border-radius: 3px;
+  background: #22262E;
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3A3A52;
+  background: #2D323E;
 }
 
-/* Tabular Nums Monospace Utility */
+/* Tabular Metric Monospace */
 .font-metric {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
 }
 
-/* Neon Text Accents */
-.text-neon-pink {
-  color: #FF2E93;
-  text-shadow: 0 0 10px rgba(255, 46, 147, 0.4);
+/* Hairline Glass Border */
+.border-hairline {
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-.text-neon-cyan {
-  color: #00F0FF;
-  text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
-}
-
-.text-neon-yellow {
-  color: #FFE600;
-  text-shadow: 0 0 10px rgba(255, 230, 0, 0.4);
-}
-
-/* Glass Border */
-.border-glass {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.border-glass-pink {
-  border: 1px solid rgba(255, 46, 147, 0.3);
-}
-
-.border-glass-cyan {
-  border: 1px solid rgba(0, 240, 255, 0.3);
+.border-hairline-elevated {
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
