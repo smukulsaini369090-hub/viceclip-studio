@@ -4,6 +4,7 @@
 > **Outperform OpusClip with zero monthly subscriptions, zero cloud queue times, and 100% hardware-accelerated local rendering on your own PC.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-viceclip--studio.vercel.app-00F0FF?style=flat&logo=vercel&logoColor=white)](https://viceclip-studio.vercel.app/)
 [![Python: 3.12](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![CUDA: 12.4](https://img.shields.io/badge/CUDA-12.4-76B900?logo=nvidia&logoColor=white)](https://developer.nvidia.com/cuda-toolkit)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.6.0%2Bcu124-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
