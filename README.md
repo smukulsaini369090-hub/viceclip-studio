@@ -143,21 +143,7 @@ The Viral Brain will score and rank candidate clips with deep semantic reasoning
 
 ---
 
-## 🌐 Deploying Frontend on Vercel (Hybrid BYO-GPU)
 
-You can deploy the Next.js Studio frontend to Vercel so anyone can access the sleek UI in their browser, while executing heavy GPU renders on their local PC:
-
-1. Push your repository to **GitHub** (the provided `.gitignore` automatically keeps sensitive `.env` and large video files private).
-2. Go to [Vercel Dashboard](https://vercel.com) -> **Add New Project** -> Select your GitHub repository.
-3. In **Root Directory**, set: `frontend`.
-4. Deploy!
-
-### How the Hybrid Architecture Works:
-- The Vercel frontend is accessible from any browser (e.g. `https://viceclip-studio.vercel.app`).
-- When a user analyzes or renders a video, the browser sends requests directly to `http://127.0.0.1:8000` (their local machine's GPU worker).
-- **FastAPI CORS** is pre-configured with `allow_origin_regex=r"https://.*\.vercel\.app"` to ensure seamless cross-origin communication with zero configuration.
-
----
 
 ## 📁 Project Structure
 
