@@ -386,13 +386,15 @@ export const HeatmapTimeline: React.FC<HeatmapTimelineProps> = ({
           <div className="flex items-center gap-1">
             <button
               onClick={() => nudgeTrim("start", -0.1)}
-              className="px-2.5 py-1 bg-studio-800 hover:bg-studio-700 text-studio-200 rounded text-xs font-mono border border-studio-700/60 transition-colors"
+              className="px-2.5 py-1 bg-studio-800 hover:bg-studio-750 text-studio-200 rounded-md text-xs font-mono border border-studio-700 transition-all btn-tactile shadow-sm"
+              title="Step backward 0.1s"
             >
               -0.1s
             </button>
             <button
               onClick={() => nudgeTrim("start", +0.1)}
-              className="px-2.5 py-1 bg-studio-800 hover:bg-studio-700 text-studio-200 rounded text-xs font-mono border border-studio-700/60 transition-colors"
+              className="px-2.5 py-1 bg-studio-800 hover:bg-studio-750 text-studio-200 rounded-md text-xs font-mono border border-studio-700 transition-all btn-tactile shadow-sm"
+              title="Step forward 0.1s"
             >
               +0.1s
             </button>
@@ -400,7 +402,7 @@ export const HeatmapTimeline: React.FC<HeatmapTimelineProps> = ({
         </div>
 
         {/* End Trim Nudge */}
-        <div className="flex items-center justify-between bg-studio-950 border border-studio-800 p-2.5 rounded">
+        <div className="flex items-center justify-between bg-studio-950 border border-studio-800 p-2.5 rounded-lg shadow-sm">
           <div>
             <div className="text-[11px] font-mono text-studio-400">Out-point (end)</div>
             <div className="text-sm font-mono font-medium text-studio-100 tabular-nums">
@@ -410,13 +412,15 @@ export const HeatmapTimeline: React.FC<HeatmapTimelineProps> = ({
           <div className="flex items-center gap-1">
             <button
               onClick={() => nudgeTrim("end", -0.1)}
-              className="px-2.5 py-1 bg-studio-800 hover:bg-studio-700 text-studio-200 rounded text-xs font-mono border border-studio-700/60 transition-colors"
+              className="px-2.5 py-1 bg-studio-800 hover:bg-studio-750 text-studio-200 rounded-md text-xs font-mono border border-studio-700 transition-all btn-tactile shadow-sm"
+              title="Step backward 0.1s"
             >
               -0.1s
             </button>
             <button
               onClick={() => nudgeTrim("end", +0.1)}
-              className="px-2.5 py-1 bg-studio-800 hover:bg-studio-700 text-studio-200 rounded text-xs font-mono border border-studio-700/60 transition-colors"
+              className="px-2.5 py-1 bg-studio-800 hover:bg-studio-750 text-studio-200 rounded-md text-xs font-mono border border-studio-700 transition-all btn-tactile shadow-sm"
+              title="Step forward 0.1s"
             >
               +0.1s
             </button>

@@ -43,7 +43,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="flex items-center gap-3">
         <div className="w-8 h-8 rounded-lg bg-studio-700 border border-studio-600 flex items-center justify-center font-mono font-bold text-studio-100 text-xs shadow-studio-card relative">
           <span>VC</span>
-          <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-tally-amber" />
+          <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-tally-amber animate-pulse shadow-sm" />
         </div>
         <div>
           <div className="flex items-center gap-2">
@@ -91,7 +91,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="flex items-center gap-1.5">
         <button
           onClick={handleOpenExplorer}
-          className="px-2.5 py-1.5 rounded-lg bg-studio-800 hover:bg-studio-700 border border-studio-600 text-studio-300 hover:text-studio-100 transition-colors text-xs flex items-center gap-1.5 shadow-studio-card"
+          className="px-2.5 py-1.5 rounded-lg bg-studio-800 hover:bg-studio-700 border border-studio-600 text-studio-300 hover:text-studio-100 transition-all text-xs flex items-center gap-1.5 shadow-studio-card btn-tactile"
           title="Open Output Folder in Windows Explorer"
         >
           <FolderOpen className="w-3.5 h-3.5 text-studio-400" />
@@ -100,7 +100,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         <button
           onClick={onOpenCache}
-          className="px-2.5 py-1.5 rounded-lg bg-studio-800 hover:bg-studio-700 border border-studio-600 text-studio-300 hover:text-studio-100 transition-colors text-xs flex items-center gap-1.5 shadow-studio-card"
+          className="px-2.5 py-1.5 rounded-lg bg-studio-800 hover:bg-studio-700 border border-studio-600 text-studio-300 hover:text-studio-100 transition-all text-xs flex items-center gap-1.5 shadow-studio-card btn-tactile"
           title="SQLite Smart Cache Library"
         >
           <HardDrive className="w-3.5 h-3.5 text-studio-400" />
@@ -109,7 +109,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         <button
           onClick={onOpenBatchQueue}
-          className="px-2.5 py-1.5 rounded-lg bg-studio-800 hover:bg-studio-700 border border-studio-600 text-studio-300 hover:text-studio-100 transition-colors text-xs flex items-center gap-1.5 shadow-studio-card"
+          className="px-2.5 py-1.5 rounded-lg bg-studio-800 hover:bg-studio-700 border border-studio-600 text-studio-300 hover:text-studio-100 transition-all text-xs flex items-center gap-1.5 shadow-studio-card btn-tactile"
           title="Batch Watchlist Queue"
         >
           <ListVideo className="w-3.5 h-3.5 text-studio-400" />
@@ -118,7 +118,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         <button
           onClick={onOpenRetentionVault}
-          className="px-2.5 py-1.5 rounded-lg bg-studio-800 hover:bg-studio-700 border border-studio-600 text-studio-300 hover:text-studio-100 transition-colors text-xs flex items-center gap-1.5 shadow-studio-card"
+          className="px-2.5 py-1.5 rounded-lg bg-studio-800 hover:bg-studio-700 border border-studio-600 text-studio-300 hover:text-studio-100 transition-all text-xs flex items-center gap-1.5 shadow-studio-card btn-tactile"
           title="Self-Learning Retention Vault"
         >
           <Sparkles className="w-3.5 h-3.5 text-studio-400" />
@@ -128,7 +128,7 @@ export const Header: React.FC<HeaderProps> = ({
         {onOpenShortcuts && (
           <button
             onClick={onOpenShortcuts}
-            className="p-1.5 rounded-lg bg-studio-800 hover:bg-studio-700 border border-studio-600 text-studio-400 hover:text-studio-100 transition-colors shadow-studio-card"
+            className="p-1.5 rounded-lg bg-studio-800 hover:bg-studio-700 border border-studio-600 text-studio-400 hover:text-studio-100 transition-all shadow-studio-card btn-tactile"
             title="Keyboard Shortcuts (?)"
           >
             <Keyboard className="w-4 h-4" />
@@ -137,7 +137,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         <button
           onClick={onOpenSettings}
-          className="p-1.5 rounded-lg bg-studio-800 hover:bg-studio-700 border border-studio-600 text-studio-400 hover:text-studio-100 transition-colors shadow-studio-card"
+          className="p-1.5 rounded-lg bg-studio-800 hover:bg-studio-700 border border-studio-600 text-studio-400 hover:text-studio-100 transition-all shadow-studio-card btn-tactile"
           title="Settings & Hardware Diagnostics"
         >
           <Settings className="w-4 h-4" />

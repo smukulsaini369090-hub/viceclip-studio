@@ -329,8 +329,23 @@ export default function StudioPage() {
           </div>
 
           {clips.length === 0 ? (
-            <div className="p-12 text-center text-xs font-mono text-studio-500 bg-studio-900 border border-dashed border-studio-800 rounded">
-              No candidate clips yet. Paste a YouTube URL above and click Analyze video.
+            <div className="p-12 text-center flex flex-col items-center justify-center bg-studio-900 border border-dashed border-studio-700/80 rounded-xl shadow-studio-card">
+              <div className="w-10 h-10 rounded-xl bg-studio-800 border border-studio-700 flex items-center justify-center mb-3 text-studio-400 shadow-sm">
+                <Film className="w-5 h-5 text-studio-400" />
+              </div>
+              <h3 className="text-sm font-medium text-studio-200 tracking-tight">Workstation ready for ingest</h3>
+              <p className="text-xs text-studio-400 mt-1 max-w-md">
+                Paste a long-form YouTube video URL above or load from Smart Cache to extract 9:16 viral candidate clips using multi-modal retention & audio spike convergence.
+              </p>
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs font-mono">
+                <span className="text-studio-500 text-[11px]">Quick test:</span>
+                <button
+                  onClick={() => setUrl("https://www.youtube.com/watch?v=NBV_oeNEaxw")}
+                  className="px-2.5 py-1 rounded-md bg-studio-800 hover:bg-studio-750 border border-studio-700 text-studio-300 hover:text-white transition-all btn-tactile text-[11px] shadow-sm"
+                >
+                  Load GTA 6 cached demo (NBV_oeNEaxw)
+                </button>
+              </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

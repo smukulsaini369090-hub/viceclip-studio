@@ -47,7 +47,7 @@ export const KeyboardShortcutsModal: React.FC<KeyboardShortcutsModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-studio-900 border border-studio-700/80 rounded-lg max-w-lg w-full max-h-[85vh] flex flex-col p-5 shadow-2xl">
+      <div className="bg-studio-900 border border-studio-700/80 rounded-xl max-w-lg w-full max-h-[85vh] flex flex-col p-5 shadow-2xl ring-1 ring-white/5">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-studio-800">
           <div>

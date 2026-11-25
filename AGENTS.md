@@ -125,6 +125,18 @@ This rule is **permanently active** across all sessions, conversations, and suba
 
 | **`ui-plugin-navigation`** | Auto-Adopted (`C:\Users\mukul\.gemini\antigravity\builtin\skills\ui-plugin-navigation\SKILL.md`) | Discover UI plugin panels relevant to the current task and surface a one-click pill in chat to open  | `ui-plugin-navigation` |
 
+| **`gitleaks`** | Gitleaks (`.agents/skills/gitleaks/`) | Detect and prevent hardcoded secrets, API tokens, passwords, private keys, and credential leaks in git history and staged files. | `/gitleaks`, `gitleaks`, `secret scan`, `detect secrets`, `api key leak`, `token leak`, `credential leak` |
+
+| **`nuclei`** | ProjectDiscovery (`.agents/skills/nuclei/`) | Fast, customizable vulnerability assessment and defensive security scanning using community and custom YAML DSL templates. | `/nuclei`, `nuclei`, `vulnerability scan`, `endpoint scan`, `misconfiguration`, `security headers`, `defensive scan` |
+
+| **`promptfoo`** | Promptfoo (`.agents/skills/promptfoo/`) | Security testing, red-teaming, adversarial evaluation, and quality assurance for LLMs, RAG pipelines, and AI agents. | `/promptfoo`, `promptfoo`, `llm security`, `redteam`, `jailbreak`, `prompt injection`, `llm eval`, `ai red teaming` |
+
+| **`semgrep`** | Semgrep (`.agents/skills/semgrep/`) | Fast, lightweight static application security testing (SAST) and code analysis. Scans code for security vulnerabilities, OWASP Top 10, CWE Top 25. | `/semgrep`, `semgrep`, `sast`, `static analysis`, `code security`, `owasp top 10`, `security audit`, `custom lint rule` |
+
+| **`trivy`** | Aqua Security (`.agents/skills/trivy/`) | Comprehensive security and vulnerability scanner for container images, filesystems, dependencies (SCA), and IaC. | `/trivy`, `trivy`, `cve scan`, `dependency audit`, `container security`, `iac scan`, `sbom` |
+
+| **`conversations`** | Builtin (`builtin/skills/conversations`) | Manage local Antigravity conversations programmatically over HTTP+JSON. | `conversations`, `manage conversation`, `archive conversation` |
+
 ## 5. Execution Examples
 
 - **User:** *"I want to add a feature to let users export clips directly to TikTok."*  

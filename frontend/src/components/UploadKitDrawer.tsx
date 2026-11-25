@@ -205,7 +205,7 @@ export const UploadKitDrawer: React.FC<UploadKitDrawerProps> = ({
         <div className="pt-2 space-y-2">
           <button
             onClick={handleDownloadBundle}
-            className="w-full py-2.5 bg-studio-800 hover:bg-studio-750 border border-tally-amber/40 hover:border-tally-amber text-tally-amber hover:text-white rounded text-xs font-mono font-medium flex items-center justify-center gap-2 transition-colors shadow-sm"
+            className="w-full py-2.5 bg-studio-800 hover:bg-studio-750 border border-tally-amber/40 hover:border-tally-amber text-tally-amber hover:text-white rounded-lg text-xs font-mono font-medium flex items-center justify-center gap-2 transition-all btn-tactile shadow-studio-card"
           >
             <Download className="w-4 h-4" />
             <span>Download metadata bundle (.json)</span>
@@ -213,7 +213,7 @@ export const UploadKitDrawer: React.FC<UploadKitDrawerProps> = ({
 
           <button
             onClick={handleOpenFolder}
-            className="w-full py-2.5 bg-studio-850 hover:bg-studio-800 border border-studio-700 text-studio-300 hover:text-white rounded text-xs font-mono font-medium flex items-center justify-center gap-2 transition-colors"
+            className="w-full py-2.5 bg-studio-850 hover:bg-studio-800 border border-studio-700 text-studio-300 hover:text-white rounded-lg text-xs font-mono font-medium flex items-center justify-center gap-2 transition-all btn-tactile shadow-sm"
           >
             <FolderOpen className="w-4 h-4 text-studio-400" />
             <span>Open output folder</span>

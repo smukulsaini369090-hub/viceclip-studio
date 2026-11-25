@@ -40,27 +40,27 @@ export const LayoutCaptionPlayground: React.FC<LayoutCaptionPlaygroundProps> = (
         </div>
 
         {/* Layout Mode Selector */}
-        <div className="flex items-center gap-1 bg-studio-950 border border-studio-800 p-1 rounded text-xs font-mono">
+        <div className="flex items-center gap-1 bg-studio-950 border border-studio-800 p-1 rounded-lg text-xs font-mono shadow-sm">
           <button
             onClick={() => setLayoutMode("split")}
-            className={`px-2.5 py-1 rounded transition-colors ${
-              layoutMode === "split" ? "bg-studio-800 text-tally-amber font-medium" : "text-studio-400 hover:text-white"
+            className={`px-2.5 py-1 rounded-md transition-all btn-tactile ${
+              layoutMode === "split" ? "bg-studio-800 text-tally-amber font-medium shadow-studio-card" : "text-studio-400 hover:text-white"
             }`}
           >
             Split (35/65)
           </button>
           <button
             onClick={() => setLayoutMode("pure_916")}
-            className={`px-2.5 py-1 rounded transition-colors ${
-              layoutMode === "pure_916" ? "bg-studio-800 text-tally-amber font-medium" : "text-studio-400 hover:text-white"
+            className={`px-2.5 py-1 rounded-md transition-all btn-tactile ${
+              layoutMode === "pure_916" ? "bg-studio-800 text-tally-amber font-medium shadow-studio-card" : "text-studio-400 hover:text-white"
             }`}
           >
             Pure 9:16
           </button>
           <button
             onClick={() => setLayoutMode("blurred")}
-            className={`px-2.5 py-1 rounded transition-colors ${
-              layoutMode === "blurred" ? "bg-studio-800 text-tally-amber font-medium" : "text-studio-400 hover:text-white"
+            className={`px-2.5 py-1 rounded-md transition-all btn-tactile ${
+              layoutMode === "blurred" ? "bg-studio-800 text-tally-amber font-medium shadow-studio-card" : "text-studio-400 hover:text-white"
             }`}
           >
             Blurred BG
@@ -70,18 +70,35 @@ export const LayoutCaptionPlayground: React.FC<LayoutCaptionPlaygroundProps> = (
 
       <div className="flex flex-col md:flex-row items-center gap-6 justify-center">
         {/* 9:16 Phone Canvas Preview */}
-        <div className="relative w-[240px] h-[426px] bg-studio-950 rounded-xl overflow-hidden border border-studio-700 shadow-2xl flex flex-col select-none">
+        <div className="relative w-[240px] h-[426px] bg-studio-950 rounded-2xl overflow-hidden border border-studio-700 shadow-2xl flex flex-col select-none ring-1 ring-white/5">
+          {/* Hardware Camera Viewport Framing Marks */}
+          <div className="absolute top-2 left-2 text-[10px] text-studio-600/60 font-mono pointer-events-none select-none z-30">⌜</div>
+          <div className="absolute top-2 right-2 text-[10px] text-studio-600/60 font-mono pointer-events-none select-none z-30">⌝</div>
+          <div className="absolute bottom-2 left-2 text-[10px] text-studio-600/60 font-mono pointer-events-none select-none z-30">⌞</div>
+          <div className="absolute bottom-2 right-2 text-[10px] text-studio-600/60 font-mono pointer-events-none select-none z-30">⌟</div>
+
+          {/* Viewport Meta Bar */}
+          <div className="absolute top-1.5 left-0 right-0 z-30 flex items-center justify-center pointer-events-none">
+            <span className="text-[7.5px] font-mono text-studio-500/80 tracking-widest uppercase bg-studio-950/80 px-2 py-0.5 rounded-full border border-studio-800/60">
+              9:16 • 1080x1920 • 60FPS NVENC
+            </span>
+          </div>
+
           {/* Top 3s Curiosity Banner Overlay */}
-          <div className="absolute top-5 left-3 right-3 z-30">
+          <div className="absolute top-7 left-3 right-3 z-30">
             <div
-              className={`p-2 rounded text-center text-[10px] font-mono font-medium tracking-wide shadow-md ${
+              className={`p-2 rounded-lg text-center text-[10px] font-mono font-medium tracking-wide shadow-md transition-all ${
                 captionTheme === "vice_city_neon"
-                  ? "bg-studio-800 text-tally-amber border border-tally-amber/40"
+                  ? "bg-studio-800/95 text-tally-amber border border-tally-amber/40 shadow-studio-card"
                   : captionTheme === "rockstar_bold"
-                  ? "bg-studio-800 text-studio-100 border border-studio-600 font-bold"
+                  ? "bg-studio-800/95 text-studio-100 border border-studio-600 font-bold"
                   : "bg-studio-900/90 text-studio-300 border border-studio-750"
               }`}
             >
+              <div className="flex items-center justify-center gap-1.5 mb-0.5 text-[8px] opacity-75">
+                <span className="w-1.5 h-1.5 rounded-full bg-tally-amber animate-pulse" />
+                <span>HOOK TALLY 00:03.00</span>
+              </div>
               {currentBanner}
             </div>
           </div>
@@ -236,9 +253,9 @@ export const LayoutCaptionPlayground: React.FC<LayoutCaptionPlaygroundProps> = (
                 <button
                   key={plat.id}
                   onClick={() => setSafeZonePlatform(plat.id)}
-                  className={`py-1.5 px-1.5 rounded text-xs font-mono border transition-colors text-center ${
+                  className={`py-1.5 px-1.5 rounded-md text-xs font-mono border transition-all text-center btn-tactile ${
                     safeZonePlatform === plat.id
-                      ? "bg-studio-800 border-tally-amber text-tally-amber font-medium ring-1 ring-tally-amber/30"
+                      ? "bg-studio-800 border-tally-amber text-tally-amber font-medium ring-1 ring-tally-amber/30 shadow-studio-card"
                       : "bg-studio-900 border-studio-800 text-studio-400 hover:text-white"
                   }`}
                 >
@@ -251,7 +268,7 @@ export const LayoutCaptionPlayground: React.FC<LayoutCaptionPlaygroundProps> = (
             </p>
           </div>
           {/* Caption Theme Switcher */}
-          <div className="bg-studio-950 border border-studio-800 p-3.5 rounded">
+          <div className="bg-studio-950 border border-studio-800 p-3.5 rounded-lg shadow-sm">
             <div className="text-xs font-mono text-studio-400 mb-2.5 flex items-center gap-1.5 font-medium">
               <Type className="w-3.5 h-3.5 text-studio-500" />
               <span>Caption preset</span>
@@ -259,9 +276,9 @@ export const LayoutCaptionPlayground: React.FC<LayoutCaptionPlaygroundProps> = (
             <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={() => onChangeTheme("vice_city_neon")}
-                className={`p-2 rounded text-xs font-mono border transition-colors text-center ${
+                className={`p-2 rounded-md text-xs font-mono border transition-all text-center btn-tactile ${
                   captionTheme === "vice_city_neon"
-                    ? "bg-studio-800 border-tally-amber text-tally-amber font-medium ring-1 ring-tally-amber/30"
+                    ? "bg-studio-800 border-tally-amber text-tally-amber font-medium ring-1 ring-tally-amber/30 shadow-studio-card"
                     : "bg-studio-900 border-studio-800 text-studio-400 hover:text-white"
                 }`}
               >
@@ -269,9 +286,9 @@ export const LayoutCaptionPlayground: React.FC<LayoutCaptionPlaygroundProps> = (
               </button>
               <button
                 onClick={() => onChangeTheme("rockstar_bold")}
-                className={`p-2 rounded text-xs font-mono border transition-colors text-center ${
+                className={`p-2 rounded-md text-xs font-mono border transition-all text-center btn-tactile ${
                   captionTheme === "rockstar_bold"
-                    ? "bg-studio-800 border-tally-amber text-tally-amber font-medium ring-1 ring-tally-amber/30"
+                    ? "bg-studio-800 border-tally-amber text-tally-amber font-medium ring-1 ring-tally-amber/30 shadow-studio-card"
                     : "bg-studio-900 border-studio-800 text-studio-400 hover:text-white"
                 }`}
               >
@@ -279,9 +296,9 @@ export const LayoutCaptionPlayground: React.FC<LayoutCaptionPlaygroundProps> = (
               </button>
               <button
                 onClick={() => onChangeTheme("clean_minimal")}
-                className={`p-2 rounded text-xs font-mono border transition-colors text-center ${
+                className={`p-2 rounded-md text-xs font-mono border transition-all text-center btn-tactile ${
                   captionTheme === "clean_minimal"
-                    ? "bg-studio-800 border-tally-amber text-tally-amber font-medium ring-1 ring-tally-amber/30"
+                    ? "bg-studio-800 border-tally-amber text-tally-amber font-medium ring-1 ring-tally-amber/30 shadow-studio-card"
                     : "bg-studio-900 border-studio-800 text-studio-400 hover:text-white"
                 }`}
               >
@@ -291,7 +308,7 @@ export const LayoutCaptionPlayground: React.FC<LayoutCaptionPlaygroundProps> = (
           </div>
 
           {/* Curiosity Banner Variant Switcher */}
-          <div className="bg-studio-950 border border-studio-800 p-3.5 rounded">
+          <div className="bg-studio-950 border border-studio-800 p-3.5 rounded-lg shadow-sm">
             <div className="text-xs font-mono text-studio-400 mb-2.5 flex items-center justify-between font-medium">
               <span className="flex items-center gap-1.5">
                 <Layout className="w-3.5 h-3.5 text-studio-500" />
@@ -300,9 +317,9 @@ export const LayoutCaptionPlayground: React.FC<LayoutCaptionPlaygroundProps> = (
               <div className="flex gap-1.5">
                 <button
                   onClick={() => setBannerVariant("A")}
-                  className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors ${
+                  className={`px-2.5 py-0.5 rounded-md text-[10px] font-mono transition-all btn-tactile ${
                     bannerVariant === "A"
-                      ? "bg-studio-800 text-tally-amber border border-tally-amber/40 font-medium"
+                      ? "bg-studio-800 text-tally-amber border border-tally-amber/40 font-medium shadow-studio-card"
                       : "bg-studio-900 text-studio-400 border border-studio-800"
                   }`}
                 >
@@ -310,9 +327,9 @@ export const LayoutCaptionPlayground: React.FC<LayoutCaptionPlaygroundProps> = (
                 </button>
                 <button
                   onClick={() => setBannerVariant("B")}
-                  className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors ${
+                  className={`px-2.5 py-0.5 rounded-md text-[10px] font-mono transition-all btn-tactile ${
                     bannerVariant === "B"
-                      ? "bg-studio-800 text-tally-amber border border-tally-amber/40 font-medium"
+                      ? "bg-studio-800 text-tally-amber border border-tally-amber/40 font-medium shadow-studio-card"
                       : "bg-studio-900 text-studio-400 border border-studio-800"
                   }`}
                 >

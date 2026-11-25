@@ -54,3 +54,28 @@ body {
 .border-hairline-elevated {
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
+
+/* Tactile Hardware Click & Micro-Interactions */
+.btn-tactile {
+  transition: transform 120ms cubic-bezier(0.4, 0, 0.2, 1), background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.btn-tactile:active:not(:disabled) {
+  transform: scale(0.975);
+}
+
+/* Accessible Focus-Visible Ring */
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #0B0C0E, 0 0 0 4px #F59E0B;
+}
+
+/* Subtle Shimmer for High-Priority CTAs */
+@keyframes studio-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.animate-shimmer {
+  animation: studio-shimmer 2.4s infinite;
+}
